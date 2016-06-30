@@ -16,7 +16,7 @@ var isDevelopment = (process.env.ENVIRONMENT !== "production");
 
 
 gulp.task('stylesheet', ['sprites'], function () {
-  return gulp.src('app/css/main.css')
+  return gulp.src('app/css/*.css')
     .pipe($.if(isDevelopment, $.sourcemaps.init()))
     .on('error', function (error) {
       console.log(error.stack);

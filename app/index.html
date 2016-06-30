@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Generated with @endel/generator-modern-frontend</title>
+    <title>jounery</title>
 
     <!-- Place favicon.ico in the root directory -->
 
@@ -19,22 +19,31 @@
     <link rel="stylesheet" href="css/main.css">
     <!-- endbuild -->
 
+    <!-- build:css css/tricky-player.css -->
+    <link rel="stylesheet" href="css/tricky-player.css">
+    <!-- endbuild -->
 
     <!-- build:js js/vendor/modernizr.js -->
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
 
   </head>
-  <body>
-    <script>
-      var shadow = document.querySelector('#player_panel').createShadowRoot();
-      var template = document.querySelector('#player_panel');
-      var clone = document.importNode(template.content, true);
-      shadow.appendChild(clone);
-    </script>
+  <body class='top-level'>
     <div id='player_panel'>xxxの播放器</div>
-    <journey id='journeyTemplate'>
-    </journey>
+    <div id='tricky_player' class='t-player-masterboard white'>
+      <div class='t-player-processbar'>
+      </div>
+      <div class='t-player-body-panel'>
+        <div class='t-player-left-panel'>
+          <span class='t-player-song'>コーヒーカップ - 鎖那</span>
+        </div>
+        <div class='t-player-right-panel'>
+
+        </div>
+      </div>
+    </div>
+    <audio preload='metadata' src='http://p2.music.126.net/LVfJOevX9krReue9CZ3jsw==/7923080790406761.mp3'>
+    </audio>
     <!--[if lt IE 10]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
