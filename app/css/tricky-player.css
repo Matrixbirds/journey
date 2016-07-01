@@ -16,7 +16,7 @@
 }
 
 .t-player-processbar {
-  width: 100%;
+  width: 0;
   height: 2px;
   background: red;
 }
