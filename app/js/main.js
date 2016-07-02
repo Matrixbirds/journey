@@ -1,27 +1,19 @@
 /* jshint devel:true */
-console.log('Look at app/js/main.js');
-(function(context, events){
-  document.addEventListener('DOMContentLoaded', events['init'], false);
+(function(context){
+  const audio = document.querySelector('audio');
+  const processbar = document.querySelector('.t-player-processbar');
+  document.addEventListener('DOMContentLoaded', (e) => {
+    document.querySelector('.t-player-processbar').style.width = 0;
+  }, false);
+  audio.addEventListener('timeupdate', (e) => {
+    processbar.style.width = `${audio.currentTime / audio.duration * 100}%`;
+  }, false);
   context.addEventListener('click', (e) => {
     if (e.target && e.target.matches('#t-player-button')) {
-      events['playerEvent'].call(context.querySelector('.t-player-processbar'));
+      audio.play();
     }
     else if (e.target && e.target.matches('#t-stop-player-button')) {
-      events['stopEvent'].call(null);
+      audio.paused();
     }
   }, false)
-}).call(this, document.querySelector('body'), {
-  init: function () {
-    document.querySelector(".t-player-processbar").style.width = 0;
-  },
-  playerEvent: function () {
-    console.log(this);
-    window.playerId = setInterval(() => {
-      this.style.width = `${parseInt(this.style.width) + 1}%`;
-      console.log('width', this.style.width);
-    }, 3000);
-  },
-  stopEvent: function() {
-    clearInterval(window.playerId);
-  }
-});
+}).call(this, document.querySelector('body'));
