@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'fx';
-  src: url('neteasemusic.eot');
+  src: url('../fonts/neteasemusic.woff');
 }
 .t-player-masterboard {
   position: fixed;
@@ -46,4 +46,38 @@
 
 .white {
   background-color: #fafafa;
+}
+
+.t-player-controlboard {
+  list-style: none;
+  padding-left: 0px;
+}
+
+.t-player-controlboard > li {
+  display: inline;
+}
+
+.t-player-prev,
+.t-player-next,
+.t-player-pause,
+.t-player-start {
+  font-family: 'fx';
+  font-size: 16px;
+  color: #3E1E14;
+}
+
+.t-player-prev:before {
+  content: '\e603';
+}
+
+.t-player-next:before {
+  content: '\e600';
+}
+
+.t-player-pause:before {
+  content: '\e601';
+}
+
+.t-player-start:before {
+  content: '\e602';
 }

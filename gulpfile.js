@@ -116,9 +116,7 @@ gulp.task('images', function () {
 
 gulp.task('fonts', function () {
   var pattern = 'app/fonts/**/*'
-  return gulp.src(require('main-bower-files')({
-    filter: '**/*.{eot,svg,ttf,woff,woff2}'
-  }).concat(pattern))
+  return gulp.src(pattern)
     .pipe(gulp.dest('.tmp/fonts'))
     .pipe(gulp.dest('dist/fonts'));
 });
@@ -141,7 +139,8 @@ gulp.task('serve', ['stylesheet', 'javascript', 'fonts'], function () {
     server: {
       baseDir: ['.tmp', 'app'],
       routes: {
-        '/bower_components': 'bower_components'
+        '/bower_components': 'bower_components',
+        '/fonts': 'fonts'
       }
     }
   });
