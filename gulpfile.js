@@ -121,6 +121,13 @@ gulp.task('fonts', function () {
     .pipe(gulp.dest('dist/fonts'));
 });
 
+gulp.task('media', function() {
+  var pattern = 'app/media/*.lrc'
+  return gulp.src(pattern)
+    .pipe(gulp.dest('.tmp/media'))
+    .pipe(gulp.dest('dist/media'));
+});
+
 gulp.task('extras', function () {
   return gulp.src([
     'app/*.*',
@@ -132,7 +139,7 @@ gulp.task('extras', function () {
 
 gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
 
-gulp.task('serve', ['stylesheet', 'javascript', 'fonts'], function () {
+gulp.task('serve', ['stylesheet', 'javascript', 'fonts', 'media'], function () {
   browserSync({
     notify: false,
     port: 9000,

@@ -51,6 +51,7 @@
 .t-player-controlboard {
   list-style: none;
   padding-left: 0px;
+  margin: 0;
 }
 
 .t-player-controlboard > li {
@@ -80,4 +81,18 @@
 
 .t-player-start:before {
   content: '\e602';
+}
+
+.t-player-lrc-panel {
+  list-style: none;
+  padding-left: 0px;
+  border: 1px solid #EEEBBF;
+}
+
+.t-player-lrc-panel > .highlight {
+  color: red;
+}
+
+.t-player-lrc-panel > li {
+  color: black;
 }
