@@ -1,11 +1,5 @@
 /* jshint devel:true */
 (function(context){
-  function setCurrentHighlight(selector) {
-    const node = document.querySelector(selector);
-    if (node && node.className != 'highlight') {
-
-    }
-  }
   const audio = document.querySelector('audio');
   const processbar = document.querySelector('.t-player-processbar');
   const controlButton = document.querySelector('#t-player-button');
