@@ -10,8 +10,5 @@ body, html {
 }
 
 .OpsWarning {
-  display: block;
-  width: 190px;
   border: 1px solid #f0020f;
-  margin: 20% auto;
 }

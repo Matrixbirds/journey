@@ -10,6 +10,7 @@
   const processbar = document.querySelector('.t-player-processbar');
   const controlButton = document.querySelector('#t-player-button');
   const ajax = new XMLHttpRequest();
+  const tPlayerSongLrc = document.querySelector('.t-player-song-lrc');
   const lrc = { 
     text: null,
     text_array: null,
@@ -23,7 +24,7 @@
         .filter((e) => /\[\d+:\d+(\.\d+)?\]/g.test(e))
         .map((e) => {
           const a = /\[\d+:\d+(\.\d+)?\]/g.exec(e)[0].replace(/\[|\]/g, "").split(/:/);
-          const res = a[0]  * 60 + a[1];
+          const res = parseFloat(a[0])  * 60 + parseFloat(a[1]);
           return { time: parseFloat(res), content: e.split("]")[1]};
         }));
     }
@@ -55,24 +56,19 @@
     document.querySelector('.t-player-processbar').style.width = 0;
   }, false);
   audio.addEventListener('timeupdate', (e) => {
-    processbar.style.width = `${audio.currentTime / audio.duration * 100}%`;
+    const time = audio.currentTime;
+    processbar.style.width = `${time / audio.duration * 100}%`;
+    const current = document.querySelector('.highlight');
+    if (current)
+      current.className = current.className.replace(/highlight/, '');
     (function(textString) {
       if(textString) {
         const [songArray, length] = [lrc.to_a(), lrc.to_a().length];
-        for (let i = 0; i < length; i++) {
-          if (songArray[i].time <= parseFloat(audio.currentTime.toFixed(3))) {
-            // console.info('content', songArray[i].content);
-            if(i == 0) { 
-              window.old_node = document.querySelector('#time_0');
-              window.old_node.className = 'highlight';
-            }
-            window.current_node = document.querySelector(`#time_${i}`);
-            if (window.current_node != window.old_node) {
-              window.old_node.className = '';
-              window.current_node.className = 'highlight';
-              window.old_node = window.current_node;
-              console.info('content', songArray[i].content);
-            }
+        for (let i = 0, j = 1; j < length; i++, j++) {
+          if (songArray[i].time <= parseFloat(time.toFixed(3)) &&
+            parseFloat(time.toFixed(3)) <= songArray[j].time) {
+            document.querySelector(`#time_${i}`).className = 'highlight';
+            tPlayerSongLrc.innerText = songArray[i].content;
           }
         }
       }
@@ -96,14 +92,8 @@
     }
   }, false);
   document.addEventListener('OpsWarning', (e) => {
-    if (document.querySelector('.OpsWarning')) return false;
-    const p = (function(params) {
-        const dom = document.createElement(params['name']);
-        dom.setAttribute('class', params['class']);
-        return dom;
-    })({name: 'p', class: 'OpsWarning'});
+    const p = document.querySelector('.OpsWarning');
     p.innerText = "Ops....功能尚未实现哦";
-    context.appendChild(p);
-    setTimeout((e) => (context.removeChild(p)), 800);
+    setTimeout((e) => (p.innerText=''), 800);
   });
 }).call(this, document.querySelector('body'));

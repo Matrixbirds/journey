@@ -28,15 +28,18 @@
   float: left;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100px;
+  width: 80%;
+  max-width: 80%;
 }
 
 .t-player-left-panel > * {
   margin-right: 5px;
+  display: inline-block;
 }
 
 .t-player-left-panel > .t-player-song {
   white-space: nowrap;
+  width: 20%;
 }
 
 
@@ -95,4 +98,8 @@
 
 .t-player-lrc-panel > li {
   color: black;
+}
+
+.t-player-song-lrc {
+  width: 70%;
 }
